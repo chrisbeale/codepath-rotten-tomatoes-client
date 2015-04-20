@@ -60,8 +60,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             if error == nil {
                 self.errorDialog.hidden = true;
                 var errorValue: NSError? = nil
-                let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &errorValue) as NSDictionary!
-                self.movies = dictionary["movies"] as NSArray!
+                let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &errorValue) as! NSDictionary
+                self.movies = dictionary["movies"] as! NSArray
                 self.moviesTableView.reloadData()
             } else {
                 println("Error raised: \(error)")
@@ -100,14 +100,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as MovieCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
         
-        let movie = movies[indexPath.row] as NSDictionary
+        let movie = movies[indexPath.row] as! NSDictionary
         
         cell.titleLabel?.text = movie["title"] as? String
         cell.synopsisLabel?.text = movie["synopsis"] as? String
         
-        var urlString = movie.valueForKeyPath("posters.thumbnail") as String
+        var urlString = movie.valueForKeyPath("posters.thumbnail") as! String
         var range = urlString.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)
         if let range = range {
             urlString = urlString.stringByReplacingCharactersInRange(range, withString: "https://content6.flixster.com/")
@@ -128,11 +128,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        let cell = sender as UITableViewCell
+        let cell = sender as! UITableViewCell
         let indexPath = moviesTableView.indexPathForCell(cell)!
-        let movie = movies[indexPath.row] as NSDictionary
+        let movie = movies[indexPath.row] as! NSDictionary
         
-        let movieDetailsViewController = segue.destinationViewController as MovieDetailsViewController
+        let movieDetailsViewController = segue.destinationViewController as! MovieDetailsViewController
         movieDetailsViewController.movie = movie
     }
 
