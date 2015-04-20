@@ -11,8 +11,17 @@ import UIKit
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var moviesTableView: UITableView!
     
+    @IBOutlet weak var errorDialog: UIView!
+    
     private var movies = NSArray();
     private var refreshControl: UIRefreshControl!
+    private var category: MovieCategory = .BoxOffice
+    
+    enum MovieCategory { case BoxOffice, DVD }
+    
+    func setCategory(category: MovieCategory) {
+        self.category = category;
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +31,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         moviesTableView.delegate = self
         moviesTableView.dataSource = self
         
+        self.title = category == .BoxOffice ? "Box Office" : "DVD"
+        
         SVProgressHUD.show()
         loadMovies({
             SVProgressHUD.dismiss()
@@ -30,24 +41,31 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
         moviesTableView.insertSubview(refreshControl, atIndex: 0)
+        
+        errorDialog.hidden = true;
     }
     
     func loadMovies(callback: () -> Void) {
-        let YourApiKey = "dagqdghwaq3e3mxyrp7kmmj5" // Fill with the key you registered at http://developer.rottentomatoes.com
-        let RottenTomatoesURLString = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=" + YourApiKey
         
+        let YourApiKey = "dagqdghwaq3e3mxyrp7kmmj5" // Fill with the key you registered at http://developer.rottentomatoes.com
+        
+        let movieCategory = self.category == .BoxOffice ? "movies/box_office" : "dvds/top_rentals"
+        let RottenTomatoesURLString = "http://api.rottentomatoes.com/api/public/v1.0/lists/\(movieCategory).json?apikey=" + YourApiKey
+    
         let url = NSURL(string: RottenTomatoesURLString)
         
         let request = NSMutableURLRequest(URL: url!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler:{ (response, data, error) in
             
             if error == nil {
+                self.errorDialog.hidden = true;
                 var errorValue: NSError? = nil
                 let dictionary = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &errorValue) as NSDictionary!
                 self.movies = dictionary["movies"] as NSArray!
                 self.moviesTableView.reloadData()
             } else {
                 println("Error raised: \(error)")
+                 self.errorDialog.hidden = false
             }
             
             callback()

@@ -12,7 +12,7 @@ class MovieDetailsViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var synopsisLabel: UILabel!
+    @IBOutlet weak var synopsisText: UITextView!
     
     var movie: NSDictionary!
     
@@ -21,7 +21,7 @@ class MovieDetailsViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         titleLabel.text = movie["title"] as? String
-        synopsisLabel.text = movie["synopsis"] as? String
+        synopsisText.text = movie["synopsis"] as? String
         
         var urlString = movie.valueForKeyPath("posters.thumbnail") as String
         var range = urlString.rangeOfString(".*cloudfront.net/", options: .RegularExpressionSearch)

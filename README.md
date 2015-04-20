@@ -12,7 +12,7 @@ Required
 [X] User can pull to refresh the movie list.
 Optional
 
-[ ] Add a tab bar for Box Office and DVD.
+[X] Add a tab bar for Box Office and DVD.
 [ ] Implement segmented control to switch between list view and grid view.
 [ ] Add a search bar.
 [ ] All images fade in.

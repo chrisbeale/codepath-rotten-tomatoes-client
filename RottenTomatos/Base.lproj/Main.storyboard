@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="a9D-Si-q0l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="64j-tH-oYd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--Movies-->
+        <!--Box Office-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="MoviesViewController" customModule="RottenTomatos" customModuleProvider="target" sceneMemberID="viewController">
@@ -13,11 +13,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="147" sectionHeaderHeight="22" sectionFooterHeight="22" id="tDu-df-31U">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="563"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="147" id="hOZ-AD-OVu" customClass="MovieCell" customModule="RottenTomatos" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="147" id="hOZ-AD-OVu" customClass="MovieCell" customModule="RottenTomatos" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hOZ-AD-OVu" id="lNC-Cf-fk0">
@@ -52,17 +52,37 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view alpha="0.5" contentMode="scaleToFill" id="1xq-ep-KXv">
+                                <rect key="frame" x="0.0" y="65" width="320" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconmonstr-error-icon-24.png" id="waV-2F-E8L">
+                                        <rect key="frame" x="98" y="8" width="16" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Error" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ITM-um-Nga">
+                                        <rect key="frame" x="122" y="5" width="106" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Movies" id="Uqd-OH-poW"/>
+                    <tabBarItem key="tabBarItem" title="Movies" image="iconmonstr-video-icon-24.png" id="smy-6A-o36"/>
+                    <navigationItem key="navigationItem" title="Box Office" id="Uqd-OH-poW"/>
                     <connections>
+                        <outlet property="errorDialog" destination="1xq-ep-KXv" id="dCq-hC-oj1"/>
                         <outlet property="moviesTableView" destination="tDu-df-31U" id="gap-kS-lnu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="777" y="359"/>
+            <point key="canvasLocation" x="1062" y="113"/>
         </scene>
         <!--Movie Details View Controller-->
         <scene sceneID="Ewn-ZI-O7c">
@@ -80,17 +100,18 @@
                                 <rect key="frame" x="-7" y="284" width="327" height="284"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Testing" id="hxt-Dg-1WQ">
+                                        <rect key="frame" x="16" y="53" width="303" height="176"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ca6-yG-v8U">
-                                        <rect key="frame" x="27" y="8" width="284" height="37"/>
+                                        <rect key="frame" x="21" y="8" width="279" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sfl-HA-Pbd">
-                                        <rect key="frame" x="27" y="53" width="284" height="223"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -103,18 +124,19 @@
                     <navigationItem key="navigationItem" id="eTR-o0-TiD"/>
                     <connections>
                         <outlet property="imageView" destination="IEE-bB-uRK" id="MVT-76-18d"/>
-                        <outlet property="synopsisLabel" destination="sfl-HA-Pbd" id="jJU-NG-uEN"/>
+                        <outlet property="synopsisText" destination="hxt-Dg-1WQ" id="Rlh-Lh-k9t"/>
                         <outlet property="titleLabel" destination="ca6-yG-v8U" id="YzI-AC-m0k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aNH-IR-W4F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1178" y="359"/>
+            <point key="canvasLocation" x="1440" y="113"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="wHi-u7-Y76">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a9D-Si-q0l" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="eq9-5P-gOv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QtF-xP-tNv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -127,12 +149,38 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HAR-Gy-4Y3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="245" y="359"/>
+            <point key="canvasLocation" x="699" y="113"/>
+        </scene>
+        <!--Custom Tab Bar Controller-->
+        <scene sceneID="6b6-kF-kXI">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="64j-tH-oYd" customClass="CustomTabBarController" customModule="RottenTomatos" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="hvP-Hn-dXt">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="a9D-Si-q0l" kind="relationship" relationship="viewControllers" id="iGl-tI-Q3k"/>
+                        <segue destination="a9D-Si-q0l" kind="relationship" relationship="viewControllers" id="nLl-tb-A6P"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zGA-Q5-w2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="334" y="113"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iconmonstr-error-icon-24.png" width="24" height="24"/>
+        <image name="iconmonstr-video-icon-24.png" width="24" height="24"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="iGl-tI-Q3k"/>
+    </inferredMetricsTieBreakers>
 </document>
